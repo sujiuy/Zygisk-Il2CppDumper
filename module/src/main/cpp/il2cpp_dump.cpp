@@ -450,6 +450,7 @@ void il2cpp_dump(const char *outDir)
         FILE *fpDecrypted = fopen(filename.c_str(), "wb");
         fwrite(((_il2cpp_image *)image)->raw_data, ((_il2cpp_image *)image)->raw_data_len, 1, fpDecrypted);
         fclose(fpDecrypted);
+        LOGI("Image:%s - %llX", il2cpp_image_get_name(image), image);
     }
     std::vector<std::string> outPuts;
     if (il2cpp_image_get_class)
