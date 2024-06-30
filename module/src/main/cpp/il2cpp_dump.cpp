@@ -441,17 +441,6 @@ void il2cpp_dump(const char *outDir)
     auto domain = il2cpp_domain_get();
     auto assemblies = il2cpp_domain_get_assemblies(domain, &size);
     std::stringstream imageOutput;
-    for (int i = 0; i < size; ++i)
-    {
-        auto image = il2cpp_assembly_get_image(assemblies[i]);
-        imageOutput << "// Image " << i << ": " << il2cpp_image_get_name(image) << "\n";
-        auto filename = std::string(outDir).append("/files/");
-        filename.append(il2cpp_image_get_name(image));
-        FILE *fpDecrypted = fopen(filename.c_str(), "wb");
-        fwrite(((_il2cpp_image *)image)->raw_data, ((_il2cpp_image *)image)->raw_data_len, 1, fpDecrypted);
-        fclose(fpDecrypted);
-        LOGI("Image:%s - %p", il2cpp_image_get_name(image), image);
-    }
     std::vector<std::string> outPuts;
     if (il2cpp_image_get_class)
     {
